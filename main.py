@@ -5,7 +5,7 @@ from discord.ext import commands
 from urllib.parse import urlparse
 
 from config import TOKEN, GUILD_ID, INPUT_CHANNEL_ID, OUTPUT_CHANNEL_ID, OPENAI_API_KEY
-from utils import extract_text_from_url, generate_summary
+from utils import extract_text_from_url, generate_summary, classify
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -32,10 +32,16 @@ async def on_message(message):
             print(f"URL detected: {urls[0]}")
             loop = asyncio.get_event_loop()
             text = await loop.run_in_executor(None, extract_text_from_url, urls[0])
+            print(text)
             print("Text extracted from URL.")
             summary = await generate_summary(text)
             print("Summary generated.")
+
+            classify_result = await classify(text)
+            print(classify_result)
             
+            
+
             embed = discord.Embed(title="Summary", description=summary, color=0x5CDBF0)
             author_avatar_url = message.author.avatar.url if message.author.avatar else None
             embed.set_author(name=message.author.display_name, icon_url=author_avatar_url)

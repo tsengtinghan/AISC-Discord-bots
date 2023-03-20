@@ -24,3 +24,22 @@ async def generate_summary(text):
 
     summary = response.choices[0].text.strip()
     return summary
+
+async def classify(text):
+    prompt = f'Please classify the text into one of the following categories:\
+        ai, science, fintech, economics finance, us-college, competitions and hackathons, \
+        and career development, you should respond with the exact same words I mentioned and do not add \
+        anymore texts to explain: \n{text}'
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    classify_result = response.choices[0].text.strip()
+    return classify_result
+
+async def which_channel(result):
+    if(result == "us-college")

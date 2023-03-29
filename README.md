@@ -2,6 +2,7 @@
 
 這個專案的緣起是因為我跟幾個朋友經常把我們看到有趣的新聞/twitter/fb貼文傳到discord群組跟大家分享，但是discord有時只會顯示連結而不會顯示貼文的內容與縮圖，所以我們開發了這個機器人，通過呼叫gpt的API先把內文Summerize後再傳到群組，這樣可以讓群內成員更好判斷是否要點進去這個連結。
 
+---
 This Discord bot listens for URLs posted in a specific input channel and generates a summary of the linked content. The summary is then sent to a designated output channel.
 
 ## Features
